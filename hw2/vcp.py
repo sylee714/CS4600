@@ -18,13 +18,15 @@ keys_list = ['a', 'b', 'c', 'd', 'e',
 
 # e = m + k mod 26
 # d = 26 + c - k mod 26
+# Method to perfrom the Vigenere cipher.
+# Takes in a key and a plain text to encrypt
 def vig_cipher(key, plain_text):
     cipher_text = ""
     # key_val = keys_dict.get(key)
     j = 0 # index for key
     for i in range(len(plain_text)):
         if plain_text[i] in keys_list:
-            print("{} : {}".format(plain_text[i], key[j % len(key)]))
+            # print("{} : {}".format(plain_text[i], key[j % len(key)]))
             # print((keys_dict.get(plain_text[i]) + keys_dict.get(key[j % len(key)])) % 26)
             cipher_text += keys_list[(keys_dict.get(plain_text[i]) + keys_dict.get(key[j % len(key)])) % 26]
             j += 1
@@ -33,12 +35,16 @@ def vig_cipher(key, plain_text):
 
     return cipher_text
 
+# Checks the key input.
+# Only English letters are allowed
 def checkInputKey(key):
     for letter in key:
         if not letter in keys_list:
             return True
     return False
 
+# Treating only lower cases.
+# Converts everything to lower cases
 def main():
     invalid = True
     while invalid:
